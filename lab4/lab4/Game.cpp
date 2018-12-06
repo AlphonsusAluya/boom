@@ -9,10 +9,11 @@
 /// pass parameters fpr sfml window, setup m_exitGame
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 800, 600, 32 }, "SFML Game" },
+	m_window{ sf::VideoMode{ 800, 600, 32 }, "missile" },
 	m_exitGame{ false } //when true game will exit
 {
 	setupFontAndText(); // load font 
+	setupArea(); // load base
 	setupSprite(); // load texture
 }
 
@@ -87,9 +88,13 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+	m_window.clear(sf::Color::Black);
+	/*m_window.draw(m_welcomeMessage);
+	m_window.draw(m_logoSprite);*/
+	m_window.draw(ground);
+	m_window.draw(cannon);
+	m_window.draw(power);
+	m_window.draw(m_powerLevelText);
 	m_window.display();
 }
 
@@ -102,14 +107,14 @@ void Game::setupFontAndText()
 	{
 		std::cout << "problem loading arial black font" << std::endl;
 	}
-	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
-	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	m_welcomeMessage.setPosition(40.0f, 40.0f);
-	m_welcomeMessage.setCharacterSize(80);
-	m_welcomeMessage.setOutlineColor(sf::Color::Red);
-	m_welcomeMessage.setFillColor(sf::Color::Black);
-	m_welcomeMessage.setOutlineThickness(3.0f);
+	m_powerLevelText.setFont(m_ArialBlackfont); // sets the font
+	m_powerLevelText.setString("Altitude"); // sets the string 
+	m_powerLevelText.setPosition(15.0f, 550.0f); // sets position
+	m_powerLevelText.setCharacterSize(20); // sets the size
+	m_powerLevelText.setFillColor(sf::Color::White); // sets the colour
+	
+
+
 
 }
 
@@ -126,3 +131,19 @@ void Game::setupSprite()
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
 }
+
+void Game::setupArea()
+{
+	ground.setSize(sf::Vector2f (800, 100)); // set the size
+	ground.setPosition(sf::Vector2f(0, 500)); // set position
+	ground.setFillColor(sf::Color::Green); // set colour
+	cannon.setSize(sf::Vector2f(60, 70)); // set the size
+	cannon.setPosition(sf::Vector2f(400, 430)); // set the position
+	cannon.setFillColor(sf::Color::Cyan); // set the colour
+	power.setSize(sf::Vector2f(300, 20)); // set the size
+	power.setPosition(sf::Vector2f(105, 550)); // set position
+	power.setFillColor(sf::Color::Red); // set colour
+
+}
+
+
