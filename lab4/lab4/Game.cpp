@@ -95,6 +95,7 @@ void Game::render()
 	m_window.draw(cannon);
 	m_window.draw(power);
 	m_window.draw(m_powerLevelText);
+	m_window.draw(m_laser);
 	m_window.display();
 }
 
@@ -145,5 +146,28 @@ void Game::setupArea()
 	power.setFillColor(sf::Color::Red); // set colour
 
 }
+
+void Game::setupClick()
+{
+}
+
+void Game::processMouseEvents(sf::Event t_mouseEvent)
+{
+	sf::Vertex startOfLine{}; // start of the line
+	sf::Vertex endOfLine{}; // end of the line
+	sf::Vector2f Click{}; // location of the first mouse click
+
+	if (sf::Mouse::Left == t_mouseEvent.mouseButton.button)
+	{
+
+		
+			Click = (sf::Vector2f{ 400, 430 });
+			startOfLine = sf::Vertex{ Click, sf::Color::Red };
+			m_laser.append(startOfLine);
+
+		
+	}
+}
+
 
 

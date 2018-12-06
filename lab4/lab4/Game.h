@@ -20,7 +20,17 @@ private:
 	void setupFontAndText();
 	void setupSprite();
 	void setupArea(); // sets up the area
+	void setupClick();
+	void processMouseEvents(sf::Event t_mouseEvent);
 
+	sf::Vector2i m_mouseClick{ 0, 0 }; //location of the first mouse click
+
+	bool m_Click = true;
+
+	int m_leftClickX = 0;
+	int m_leftClickY = 0;
+
+	sf::VertexArray m_laser{ sf::Lines };
 
 
 
